@@ -6,7 +6,28 @@ import './App.css';
 
 class App extends React.Component {
 
-  state = {}
+  state = {    resultsList: [
+    {
+      id: 'test',
+      title: 'Henry I',
+      author: 'C. Warren Hollister',
+      price: 50,
+      summary: 'The resulting volume is one that will be welcomed by students and general readers alike.',
+      image: 'https://images.dog.ceo/breeds/bulldog-english/jager-2.jpg',
+      forSale: true,
+      expanded: false
+    },
+    {
+      id: 'test2',
+      title: 'Henry VIII',
+      author: 'Alison Weir',
+      price: 149.99,
+      summary: 'This is a triumph of historical writing which will appeal equally to the general reader and the serious historian.',
+      image: 'https://images.dog.ceo/breeds/dachshund/dachshund-1018409_640.jpg',
+      forSale: false,
+      expanded: true
+    }
+  ]}
 
   handleErrors = (error) => {
     console.log(error);
@@ -28,7 +49,8 @@ class App extends React.Component {
         summary: item.volumeInfo.description,
         image: item.volumeInfo.imageLinks.smallThumbnail,
         price: forSale ? item.saleInfo.listPrice.amount : null,
-        forSale
+        forSale,
+        expanded: false
       }
     })
     return resultsList
@@ -41,6 +63,15 @@ class App extends React.Component {
     }  else {
       throw new Error('foo')
     }
+  }
+
+  toggleExpanded = (book) => {
+    let books = this.state.resultsList;
+    let bookIdx = books.findIndex(x => x.id === book.id)
+    books[bookIdx].expanded = !books[bookIdx].expanded
+    this.setState({
+      resultsList: books
+    })
   }
 
 
@@ -67,7 +98,7 @@ class App extends React.Component {
         </header>
         <main className='App'>
           <Search fetchBookList={this.fetchBookList}/>
-          <ResultsList resultsList={this.state.resultsList}/>
+          <ResultsList resultsList={this.state.resultsList}  toggleExpanded={this.toggleExpanded}/>
 
         </main>
       </>

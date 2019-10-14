@@ -3,28 +3,30 @@ import Book from './Book'
 import './ResultsList.css'
 
 export default class ResultsList extends Component {
-  static defaultProps = {
-    resultsList: [
-      {
-        id: 'test',
-        title: 'Henry I',
-        author: 'C. Warren Hollister',
-        price: 50,
-        summary: 'The resulting volume is one that will be welcomed by students and general readers alike.',
-        image: 'https://images.dog.ceo/breeds/bulldog-english/jager-2.jpg',
-        forSale: true
-      },
-      {
-        id: 'test2',
-        title: 'Henry VIII',
-        author: 'Alison Weir',
-        price: 149.99,
-        summary: 'This is a triumph of historical writing which will appeal equally to the general reader and the serious historian.',
-        image: 'https://images.dog.ceo/breeds/dachshund/dachshund-1018409_640.jpg',
-        forSale: false
-      }
-    ]
-  }
+  // static defaultProps = {
+  //   resultsList: [
+  //     {
+  //       id: 'test',
+  //       title: 'Henry I',
+  //       author: 'C. Warren Hollister',
+  //       price: 50,
+  //       summary: 'The resulting volume is one that will be welcomed by students and general readers alike.',
+  //       image: 'https://images.dog.ceo/breeds/bulldog-english/jager-2.jpg',
+  //       forSale: true,
+  //       expanded: false
+  //     },
+  //     {
+  //       id: 'test2',
+  //       title: 'Henry VIII',
+  //       author: 'Alison Weir',
+  //       price: 149.99,
+  //       summary: 'This is a triumph of historical writing which will appeal equally to the general reader and the serious historian.',
+  //       image: 'https://images.dog.ceo/breeds/dachshund/dachshund-1018409_640.jpg',
+  //       forSale: false,
+  //       expanded: true
+  //     }
+  //   ]
+  // }
   render() {
     if(this.props.resultsList.length > 0){
       return (
@@ -33,6 +35,7 @@ export default class ResultsList extends Component {
             return <Book
               key={result.id}
               book={result}
+              toggleExpanded={this.props.toggleExpanded}
               />
           })}
         </div>

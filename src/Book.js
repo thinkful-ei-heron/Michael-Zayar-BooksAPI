@@ -8,6 +8,7 @@ export default class Book extends Component {
   }
   render() {
     let book = this.props.book
+
     return (
       <div className="book /">
         <h2>{book.title}</h2>
@@ -16,13 +17,13 @@ export default class Book extends Component {
             <img src={book.image} alt={`cover of ${book.title}`} className='cover' />
           </div>
           <div className='info-div'>
+          {book.summary /*empty string is falsy*/ && <button type='button' onClick={() => this.props.toggleExpanded(book)}>{book.expanded ? 'Hide summary' : 'Show summary'}</button>}
             <p>Author: {book.author}</p>
-            <p>Price: {book.forSale ? this.formatPriceAsUsd(book.price): 'not for sale'}</p>
-            <p className='summary'>{book.summary}</p>
-          </div>
+            <p>Price: {book.forSale ? this.formatPriceAsUsd(book.price) : 'not for sale'}</p>
+            {book.expanded && <p className='summary'>{book.summary}</p>}
 
+          </div>
         </div>
-        {/* optionally: make this expandable */}
       </div>
     )
   }
