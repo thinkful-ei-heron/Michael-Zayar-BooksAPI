@@ -1,0 +1,49 @@
+.cover {
+  max-height: 10rem;
+  width: auto;
+}
+.cover-div {
+  display: inline-block;
+}
+.book {
+  height: fit-content;
+  text-align: center;
+  /* background-color: #eee; */
+  border-bottom: 1px solid grey;
+  border-top: 1px solid grey;
+}
+
+.book ~ .book {
+  border-top: none;
+}
+.info-div {
+  display: inline-block;
+  text-align: center;
+}
+
+.book-info {
+  display: flex;
+  flex-direction: row;
+  align-content: top;
+  justify-content: space-around;
+  max-width: 800px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.info-div > p {
+  margin: 0;
+}
+
+p.summary {
+  margin: 1.5rem 0;
+}
+
+p {
+  max-width: 40rem;
+}
+
+.book > h2 {
+  margin-top: 0;
+  padding-top: .25rem;
+}
